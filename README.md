@@ -57,3 +57,17 @@ Returns a bearer token. Passwords must be 8–72 characters and include a letter
 ```
 
 Returns `204` when the current password matches.
+
+## Investigations
+
+Open cases for the deduction game. Each case seats the first suspects in a circle, gives every suspect one statement, and fixes how many culprits and true statements there are. Guilt and honesty are independent. A diet or height claim is true when at least one culprit matches it. "A or B did it" is false only when both are innocent. "A and B are lying" is false when either one tells the truth.
+
+`GET /investigations` lists the cases. `GET /investigations/:id` returns the suspects and statements, without the solution.
+
+`POST /investigations/:id/solutions`
+
+```json
+{ "culprits": ["shark"], "elapsedSeconds": 90 }
+```
+
+The response says whether the guess matches the single solution and how many stars the elapsed time earned. Three stars means the guess landed inside the first time limit, then two, then one. A wrong guess scores zero.

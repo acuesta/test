@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Inject, Post, UseGuards } from '@nestjs/common';
 import { ChangePassword } from '../../application/change-password';
 import { GetUserProfile } from '../../application/get-user-profile';
 import { ListUsers } from '../../application/list-users';
@@ -11,9 +11,9 @@ import { ChangePasswordDto } from './dto/change-password.dto';
 @UseGuards(AuthGuard)
 export class UsersController {
   constructor(
-    private readonly getUserProfile: GetUserProfile,
-    private readonly listUsers: ListUsers,
-    private readonly changePassword: ChangePassword,
+    @Inject(GetUserProfile) private readonly getUserProfile: GetUserProfile,
+    @Inject(ListUsers) private readonly listUsers: ListUsers,
+    @Inject(ChangePassword) private readonly changePassword: ChangePassword,
   ) {}
 
   @Get('me')

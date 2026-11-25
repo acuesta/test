@@ -10,6 +10,8 @@ const STATUS_BY_CODE: Record<string, number> = {
   INVALID_CREDENTIALS: HttpStatus.UNAUTHORIZED,
   USER_DISABLED: HttpStatus.FORBIDDEN,
   USER_NOT_FOUND: HttpStatus.NOT_FOUND,
+  CASE_NOT_FOUND: HttpStatus.NOT_FOUND,
+  INVALID_GUESS: HttpStatus.BAD_REQUEST,
 };
 
 @Catch(DomainError)

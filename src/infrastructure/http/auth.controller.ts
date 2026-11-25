@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Inject, Post } from '@nestjs/common';
 import { AuthenticateUser } from '../../application/authenticate-user';
 import { RegisterUser } from '../../application/register-user';
 import { readTokenTtlSeconds } from '../config';
@@ -8,8 +8,8 @@ import { RegisterUserDto } from './dto/register-user.dto';
 @Controller('auth')
 export class AuthController {
   constructor(
-    private readonly registerUser: RegisterUser,
-    private readonly authenticateUser: AuthenticateUser,
+    @Inject(RegisterUser) private readonly registerUser: RegisterUser,
+    @Inject(AuthenticateUser) private readonly authenticateUser: AuthenticateUser,
   ) {}
 
   @Post('register')
